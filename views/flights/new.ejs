@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+    <h1>Add New Flight</h1>
+
+    <form action="/flights" method="post">
+
+        <label for="airlineName">Flight name</label>
+        <input name="airlineName" placeholder="Flight Name" required>
+    </br>
+
+    <label for="origin ">From</label>
+    <input name="origin" placeholder="From" required>
+</br>
+
+    <label for="destination">To</label>
+    <input name="destination" placeholder="To" required>
+
+</br>
+
+    <label for="takeOffDate">Take Of Date</label>
+    <input name="takeOffDate" placeholder="Date" type="date" required>
+</br>
+
+<label for="tripType">Trip Type</label>
+    <select name="tripType" required>
+<option value="one-way">One Way</option>
+<option value="round-trip">Round Trip </option>
+    </select>
+</br>
+    
+    <label for="returnDate">Return Date</label>
+    <input name="returnDate" placeholder="Return Date" type="date">
+   
+
+    <h3>Passengers</h3>
+
+<div>
+  <label>Adults</label>
+  <button type="button" onclick="changeCount('adults', -1)">−</button>
+  <input
+    type="number"
+    id="adults"
+    name="passengers.adults"
+    value="1"
+    min="1"
+    readonly
+  />
+  <button type="button" onclick="changeCount('adults', 1)">+</button>
+</div>
+
+
+<div>
+  <label>Kids</label>
+  <button type="button" onclick="changeCount('kids', -1)">−</button>
+  <input
+    type="number"
+    id="kids"
+    name="passengers.kids"
+    value="0"
+    min="0"
+    readonly
+  />
+  <button type="button" onclick="changeCount('kids', 1)">+</button>
+</div>
+
+
+
+<script>
+  function changeCount(type, amount) {
+    const input = document.getElementById(type);
+    let value = parseInt(input.value);
+
+    value += amount;
+
+    if (type === "adults" && value < 1) return;
+    if (type === "kids" && value < 0) return;
+
+    input.value = value;
+  }
+
+   const oneWay = document.querySelector('input[value="one-way"]');
+  const roundTrip = document.querySelector('input[value="round-trip"]');
+  const returnDateSection = document.getElementById("returnDateSection");
+
+  oneWay.addEventListener("click", () => {
+    returnDateSection.style.display = "none";
+  });
+
+  roundTrip.addEventListener("click", () => {
+    returnDateSection.style.display = "block";
+  });
+</script>
+
+
+
+
+<button type="submit">Add Flight</button>
+
+</form>
+<a href="/flights">Back To Flights</a>
+
+</body>
+</html>
