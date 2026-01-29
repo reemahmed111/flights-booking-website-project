@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+    
+   <%- include('../partials/navbar') %>
+
+<h1>Book Flight</h1>
+
+<p>
+  <strong><%= flight.airlineName %></strong><br>
+  <%= flight.origin %> → <%= flight.destination %>
+</p>
+
+  <button onclick="alert('booking confirmed')" type="submit" id="fetchBtn">Confirm Booking</button> </br>
+
+    <a href="/flights">Back To Flights</a> </br>
+  
+      <a href="/auth/sign-in">⬅Back to sign in</a>
+
+
+</body>
+</html>
